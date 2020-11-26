@@ -16,6 +16,9 @@ export interface DataApi {
 export interface FetchOptions {
   method: 'GET';
   url: string;
+  params: {
+    locale: string;
+  };
   headers: {
     'x-rapidapi-key': string;
     'x-rapidapi-host': string;
@@ -23,10 +26,39 @@ export interface FetchOptions {
 }
 
 export interface DefaultState {
-  infos: {
-    isLoading: boolean;
-  };
+  infos: InfosState;
+}
+export interface InfosState {
+  base: InfosBase;
+  cards: { [key: string]: [] };
+  isLoading: boolean;
 }
 
-export { FETCH_INFOS, LOADING } from './actions';
-export type { FetchInfosAction, Loading, InfosAction } from './actions';
+export interface InfosBase {
+  classes: string[];
+  sets: string[];
+  standard: string[];
+  wild: string[];
+  types: string[];
+  factions: string[];
+  qualities: string[];
+  races: string[];
+  locales: {};
+}
+
+export interface Card {
+  cardId: string;
+  dbfId: string;
+  img: string;
+  name: string;
+  cardSet: string;
+  type: string;
+  faction: string;
+  health: number;
+  text: string;
+  playerClass: string;
+  locale: string;
+}
+
+export { FETCH_INFOS, LOADING, FETCH_CARDS } from './actions';
+export type { Loading, FetchAction } from './actions';

@@ -1,15 +1,37 @@
 // Types
-import { FETCH_INFOS, LOADING, InfosAction } from '../../types';
+import { FETCH_INFOS, FETCH_CARDS, LOADING, FetchAction, InfosState } from '../../types';
 
-const initState = {
+const initState: InfosState = {
+  base: {
+    classes: [],
+    sets: [],
+    standard: [],
+    wild: [],
+    types: [],
+    factions: [],
+    qualities: [],
+    races: [],
+    locales: {},
+  },
+  cards: {},
   isLoading: true,
 };
 
-const infosReducer = (state = initState, action: InfosAction) => {
+const infosReducer = (state = initState, action: FetchAction) => {
   switch (action.type) {
     case FETCH_INFOS:
+      const { base, cards } = action.payload;
       return {
-        ...action.payload,
+        ...state,
+        base,
+        cards,
+        isLoading: false,
+      };
+
+    case FETCH_CARDS:
+      return {
+        ...state,
+        cards: action.payload,
         isLoading: false,
       };
 

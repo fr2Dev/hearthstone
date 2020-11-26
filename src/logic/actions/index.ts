@@ -1,1 +1,1 @@
-export { loadInfos } from './fetch';
+export { loadInfos, loadCards } from './fetch';
