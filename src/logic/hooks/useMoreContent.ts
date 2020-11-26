@@ -20,7 +20,9 @@ const useMoreContent = (content: [], contentPerGroup: number = 10) => {
     setNext(next + contentPerGroup);
   };
 
-  return { contentToShow, handleShowMoreContent, isMore };
+  const handleShowAll = () => setContentsToShow(content);
+
+  return { contentToShow, handleShowMoreContent, handleShowAll, isMore };
 };
 
 export default useMoreContent;

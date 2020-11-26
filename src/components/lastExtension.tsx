@@ -25,7 +25,9 @@ const LastExtension: React.FC<LastExtensionProps> = () => {
     (card: Card) => (card.type === 'Spell' || card.type === 'Minion') && card.img
   );
   // Setup handler cards to show
-  const { contentToShow, handleShowMoreContent, isMore } = useMoreContent(latestExtension as []);
+  const { contentToShow, handleShowMoreContent, handleShowAll, isMore } = useMoreContent(
+    latestExtension as []
+  );
 
   return (
     <div>
@@ -41,7 +43,12 @@ const LastExtension: React.FC<LastExtensionProps> = () => {
                 return <li key={cardId}>{img && <img src={img} alt={name} />}</li>;
               })}
             </CardList>
-            {isMore && <button onClick={handleShowMoreContent}>Load more</button>}
+            {isMore && (
+              <div>
+                <button onClick={handleShowMoreContent}>Load more</button>
+                <button onClick={handleShowAll}>Show All</button>
+              </div>
+            )}
           </>
         )}
       </div>
