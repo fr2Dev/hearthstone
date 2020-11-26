@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-//REDUX SETUP
+// Redux setup
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-// thunk enable async
+// Thunk enable async
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 import rootReducer from './logic/reducers';
-import { IWindow } from './definitions/interfaces';
+import { IWindow } from './types';
 import reportWebVitals from './reportWebVitals';
 
 const composeEnhancers = (window as IWindow).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

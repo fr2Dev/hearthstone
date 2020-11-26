@@ -1,11 +1,13 @@
-import { FetchInfosAction } from '../../definitions/interfaces';
+// Types
+import { FETCH_INFOS, FetchInfosAction } from '../../types';
+
 const initState = {
   infos: {},
 };
 
 const infosReducer = (state = initState, action: FetchInfosAction) => {
   switch (action.type) {
-    case 'FETCH_INFOS':
+    case FETCH_INFOS:
       return {
         ...state,
         infos: action.payload.infos,

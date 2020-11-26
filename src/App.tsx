@@ -1,3 +1,4 @@
+// Components
 import { Home } from './components';
 
 function App() {

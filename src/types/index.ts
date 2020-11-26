@@ -4,12 +4,6 @@ export interface IWindow {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
 }
 
-export interface FetchInfosAction {
-  type: 'FETCH_INFOS';
-  payload: {
-    infos: {};
-  };
-}
 export interface DataApi {
   data: {};
   config: {};
@@ -27,3 +21,6 @@ export interface FetchOptions {
     'x-rapidapi-host': string;
   };
 }
+
+export { FETCH_INFOS, LOADING_INFOS } from './actions';
+export type { FetchInfosAction, LoadingInfosAction } from './actions';

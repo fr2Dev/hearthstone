@@ -1,4 +1,6 @@
-import { FetchOptions } from '../definitions/interfaces';
+// Types
+import { FetchOptions } from '../types';
+
 export const key = process.env.REACT_APP_API_KEY;
 
 const baseUrl = 'https://omgvamp-hearthstone-v1.p.rapidapi.com/';
