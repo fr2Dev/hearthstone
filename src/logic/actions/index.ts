@@ -1,0 +1,1 @@
+export { loadInfos } from './fetch';
