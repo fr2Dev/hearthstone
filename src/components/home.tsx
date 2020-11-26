@@ -7,9 +7,9 @@ export interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(loadInfos());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(loadInfos());
+  // }, [dispatch]);
   return <h1>home</h1>;
 };
 

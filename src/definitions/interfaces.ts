@@ -10,3 +10,20 @@ export interface FetchInfosAction {
     infos: {};
   };
 }
+export interface DataApi {
+  data: {};
+  config: {};
+  headers: {};
+  request: {};
+  status: number;
+  statusText: string;
+}
+
+export interface FetchOptions {
+  method: 'GET';
+  url: string;
+  headers: {
+    'x-rapidapi-key': string;
+    'x-rapidapi-host': string;
+  };
+}
