@@ -20,7 +20,7 @@ const Home: React.FC<HomeProps> = () => {
   return (
     <div>
       <AnimatePresence onExitComplete={() => setshowLoadedContent(true)}>
-        {isLoading && <Loader />}
+        {true && <Loader />}
       </AnimatePresence>
       {!isLoading && showLoadedContent && <LastExtension />}
     </div>
