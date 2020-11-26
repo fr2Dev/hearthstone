@@ -4,7 +4,7 @@ import { loadInfos } from '../logic/actions';
 // Types
 import { DefaultState, Card } from '../types';
 // Components
-import { LastExtension } from './';
+import { LastExtension, Loader } from './';
 export interface HomeProps {}
 
 const Home: React.FC<HomeProps> = () => {
@@ -19,9 +19,9 @@ const Home: React.FC<HomeProps> = () => {
   return (
     <div>
       {isLoading ? (
-        <div>'LOADING'</div>
+        <Loader />
       ) : (
-        <div>
+        <>
           {/* <ul>
             {base.standard.map((extension) => (
               <li key={extension}>{extension}</li>
@@ -29,7 +29,7 @@ const Home: React.FC<HomeProps> = () => {
           </ul> */}
 
           <LastExtension />
-        </div>
+        </>
       )}
     </div>
   );
