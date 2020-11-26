@@ -22,5 +22,11 @@ export interface FetchOptions {
   };
 }
 
-export { FETCH_INFOS, LOADING_INFOS } from './actions';
-export type { FetchInfosAction, LoadingInfosAction } from './actions';
+export interface DefaultState {
+  infos: {
+    isLoading: boolean;
+  };
+}
+
+export { FETCH_INFOS, LOADING } from './actions';
+export type { FetchInfosAction, Loading, InfosAction } from './actions';

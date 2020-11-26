@@ -12,6 +12,7 @@ export const loadInfos = () => async (dispatch: Dispatch) => {
 
   dispatch({
     type: FETCH_INFOS,
-    payload: { infos: response.data },
+    payload: response.data,
+    isLoading: false,
   });
 };

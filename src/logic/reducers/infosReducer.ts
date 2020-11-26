@@ -1,16 +1,22 @@
 // Types
-import { FETCH_INFOS, FetchInfosAction } from '../../types';
+import { FETCH_INFOS, LOADING, InfosAction } from '../../types';
 
 const initState = {
-  infos: {},
+  isLoading: true,
 };
 
-const infosReducer = (state = initState, action: FetchInfosAction) => {
+const infosReducer = (state = initState, action: InfosAction) => {
   switch (action.type) {
     case FETCH_INFOS:
       return {
+        ...action.payload,
+        isLoading: false,
+      };
+
+    case LOADING:
+      return {
         ...state,
-        infos: action.payload.infos,
+        isLoading: true,
       };
 
     default:

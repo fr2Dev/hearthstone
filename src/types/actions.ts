@@ -1,13 +1,13 @@
 export const FETCH_INFOS = 'FETCH_INFOS';
-export const LOADING_INFOS = 'LOADING_INFOS';
+export const LOADING = 'LOADING';
 
 export interface FetchInfosAction {
   type: typeof FETCH_INFOS;
-  payload: {
-    infos: {};
-  };
+  payload: {};
 }
 
-export interface LoadingInfosAction {
-  type: typeof LOADING_INFOS;
+export interface Loading {
+  type: typeof LOADING;
 }
+
+export type InfosAction = FetchInfosAction | Loading;
