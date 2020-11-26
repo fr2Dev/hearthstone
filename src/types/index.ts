@@ -50,6 +50,7 @@ export interface Card {
   cardId: string;
   dbfId: string;
   img: string;
+  imgGold: string;
   name: string;
   cardSet: string;
   type: string;

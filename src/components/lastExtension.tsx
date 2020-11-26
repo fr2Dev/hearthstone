@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 // Types
 import { DefaultState, Card } from '../types';
 // Hooks
 import { useMoreContent } from '../logic/hooks';
 // Components
 import { CardList } from './styled';
+import { fadein } from './styled/animations';
 
 export interface LastExtensionProps {}
 
@@ -30,7 +31,7 @@ const LastExtension: React.FC<LastExtensionProps> = () => {
   );
 
   return (
-    <div>
+    <motion.div variants={fadein} initial="hidden" animate="show">
       <h1>Last Extension</h1>
       <h2>{lastExtensionName}</h2>
       <div>
@@ -38,9 +39,11 @@ const LastExtension: React.FC<LastExtensionProps> = () => {
           <>
             <CardList>
               {contentToShow.map((card) => {
-                const { cardId, name, img } = card;
+                const { cardId, name, img, imgGold } = card;
 
-                return <li key={cardId}>{img && <img src={img} alt={name} />}</li>;
+                return (
+                  <li key={cardId}>{img && <img src={imgGold ? imgGold : img} alt={name} />}</li>
+                );
               })}
             </CardList>
             {isMore && (
@@ -52,7 +55,7 @@ const LastExtension: React.FC<LastExtensionProps> = () => {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

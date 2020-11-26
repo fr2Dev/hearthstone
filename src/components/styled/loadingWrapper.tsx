@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const LoadingWrapper = styled.div`
+export const LoadingWrapper = styled(motion.div)`
   display: grid;
   min-height: 80vh;
   place-items: center;
