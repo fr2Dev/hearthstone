@@ -10,7 +10,6 @@ export const Button = styled.button`
   box-sizing: border-box;
   clear: none;
   color: #fff;
-  cursor: pointer;
   float: none;
   font-family: Arial, sans-serif;
   font-size: 13px;
@@ -24,7 +23,7 @@ export const Button = styled.button`
   max-width: none;
   min-height: 0;
   min-width: 0;
-  outline: 1px solid rgba(255, 0, 0, 0.15);
+  outline: 1px solid rgba(0, 0, 255, 0.15);
   overflow: visible;
   padding: 0 24px;
   position: relative;
@@ -40,10 +39,18 @@ export const Button = styled.button`
   width: auto;
   z-index: auto;
 
-  &:hover {
-    background-color: #00aeff !important;
-    border: solid 1px #00aeff !important;
-    color: #fff;
+  &:not(:disabled) {
+    &:hover {
+      background-color: #00aeff;
+      border: solid 1px #00aeff;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  &:disabled {
+    background-color: lightgrey;
+    border-color: #fff;
   }
 `;
 
@@ -56,5 +63,18 @@ export const ButtonWrapper = styled.div`
 
   button + button {
     margin-left: 1rem;
+  }
+`;
+
+export const Select = styled.select`
+  font-size: 13px;
+  font-weight: 700;
+  height: 42px;
+  border: 1px solid transparent;
+  padding: 0 24px;
+
+  &,
+  option {
+    font-family: Arial, sans-serif;
   }
 `;

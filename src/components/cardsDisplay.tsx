@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 // Types
-import { DefaultState, Card } from '../types';
+import { DefaultState } from '../types';
 // Hooks
 import { useFilters } from '../logic/hooks';
 // Components
@@ -12,11 +12,23 @@ export interface CardsDisplayProps {}
 
 const CardsDisplay: React.FC<CardsDisplayProps> = () => {
   const { cards, base } = useSelector((state: DefaultState) => state.infos);
-  const { filters, filter, handleFilter, getFilteredCards, flatCards } = useFilters(cards, base);
+  const {
+    filters,
+    filter,
+    handleFilter,
+    getFilteredCards,
+    resetSubFilters,
+    flatCards,
+  } = useFilters(cards, base);
 
   return (
     <motion.div variants={fadein} initial="hidden" animate="show">
-      <Filters filters={filters} filter={filter} handleFilter={handleFilter} />
+      <Filters
+        filters={filters}
+        filter={filter}
+        handleFilter={handleFilter}
+        resetSubFilters={resetSubFilters}
+      />
       <div>
         <CardsList
           cards={flatCards}

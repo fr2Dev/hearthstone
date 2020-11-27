@@ -1,7 +1,6 @@
 import { useState } from 'react';
 // Types
-import { CardObject, InfosBase, Card } from '../../types';
-const all = 'All';
+import { CardObject, InfosBase, Card, all } from '../../types';
 
 const useFilters = (cards: CardObject, base: InfosBase) => {
   const { allCards, allExtensions } = getLists(cards);
@@ -45,7 +44,11 @@ const useFilters = (cards: CardObject, base: InfosBase) => {
     return filtered;
   };
 
-  return { filters, filter, handleFilter, getFilteredCards, flatCards };
+  const resetSubFilters = () => {
+    setFilter({ ...filter, classe: all, type: all });
+  };
+
+  return { filters, filter, handleFilter, getFilteredCards, resetSubFilters, flatCards };
 };
 
 const getLists = (cards: CardObject) => {

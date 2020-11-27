@@ -65,5 +65,7 @@ export interface CardObject {
   [key: string]: [];
 }
 
+export const all = 'All';
+
 export { FETCH_INFOS, LOADING, FETCH_CARDS } from './actions';
 export type { Loading, FetchAction } from './actions';

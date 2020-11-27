@@ -1,4 +1,4 @@
 export { CardList } from './cardList';
-export { Button, ButtonWrapper } from './button';
+export { Button, ButtonWrapper, Select } from './inputs';
 export { LoadingWrapper, SvgWrapper } from './loadingWrapper';
 export { Container, LogoWrapper } from './layout';
