@@ -30,7 +30,7 @@ export interface DefaultState {
 }
 export interface InfosState {
   base: InfosBase;
-  cards: { [key: string]: [] };
+  cards: CardObject;
   isLoading: boolean;
 }
 
@@ -59,6 +59,10 @@ export interface Card {
   text: string;
   playerClass: string;
   locale: string;
+}
+
+export interface CardObject {
+  [key: string]: [];
 }
 
 export { FETCH_INFOS, LOADING, FETCH_CARDS } from './actions';
