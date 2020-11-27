@@ -15,6 +15,11 @@ const useMoreContent = (content: [], contentPerGroup: number = 10) => {
     loopWithSlice(0, contentPerGroup);
   }, []);
 
+  const resetContent = (initContent: []) => {
+    const slicedPosts = [...initContent].slice(0, contentPerGroup);
+    setContentsToShow([...slicedPosts]);
+  };
+
   const handleShowMoreContent = () => {
     loopWithSlice(next, next + contentPerGroup);
     setNext(next + contentPerGroup);
@@ -22,7 +27,7 @@ const useMoreContent = (content: [], contentPerGroup: number = 10) => {
 
   const handleShowAll = () => setContentsToShow(content);
 
-  return { contentToShow, handleShowMoreContent, handleShowAll, isMore };
+  return { contentToShow, resetContent, handleShowMoreContent, handleShowAll, isMore };
 };
 
 export default useMoreContent;
