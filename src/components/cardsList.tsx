@@ -10,39 +10,26 @@ import { slideup } from './styled/animations';
 
 export interface CardsListProps {
   cards: Card[];
-  currentExtension: string;
+  currentExpansion: string;
+  getFilteredCards: () => Card[];
 }
 
-const CardsList: React.FC<CardsListProps> = ({ cards, currentExtension }) => {
-  const [extension, setExtension] = useState(cards);
+const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards }) => {
+  const [expansion, setExpansion] = useState(cards);
   const {
     contentToShow,
     resetContent,
     handleShowMoreContent,
     handleShowAll,
     isMore,
-  } = useMoreContent(extension as []);
-
-  const getFilteredCards = (currentExtension: string) => {
-    const getBaseFilter = (card: Card) =>
-      (card.type === 'Spell' || card.type === 'Minion') &&
-      card.text &&
-      !card.text.includes('FX') &&
-      card.img;
-
-    if (currentExtension === 'All') {
-      return cards.filter((card: Card) => getBaseFilter(card));
-    } else {
-      return cards.filter((card: Card) => getBaseFilter(card) && card.cardSet === currentExtension);
-    }
-  };
+  } = useMoreContent(expansion as []);
 
   //useEffect
   useEffect(() => {
-    const newExtansion = getFilteredCards(currentExtension);
-    setExtension(newExtansion);
-    resetContent(newExtansion as []);
-  }, [currentExtension]);
+    const newExpansion = getFilteredCards();
+    setExpansion(newExpansion);
+    resetContent(newExpansion as []);
+  }, [getFilteredCards]);
 
   return (
     <>
@@ -52,8 +39,8 @@ const CardsList: React.FC<CardsListProps> = ({ cards, currentExtension }) => {
             const { cardId, name, img, imgGold } = card;
 
             return (
-              <li>
-                <motion.div variants={slideup} initial="hidden" animate="show" key={cardId}>
+              <li key={cardId}>
+                <motion.div variants={slideup} initial="hidden" animate="show">
                   {img && <img src={imgGold ? imgGold : img} alt={name} />}
                 </motion.div>
               </li>

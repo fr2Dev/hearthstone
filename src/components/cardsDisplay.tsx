@@ -11,18 +11,18 @@ import { fadein } from './styled/animations';
 export interface CardsDisplayProps {}
 
 const CardsDisplay: React.FC<CardsDisplayProps> = () => {
-  const { cards } = useSelector((state: DefaultState) => state.infos);
-  const { allExtensions, currentExtension, handleSelectExtension, flatCards } = useFilters(cards);
+  const { cards, base } = useSelector((state: DefaultState) => state.infos);
+  const { filters, filter, handleFilter, getFilteredCards, flatCards } = useFilters(cards, base);
 
   return (
     <motion.div variants={fadein} initial="hidden" animate="show">
-      <Filters
-        extensions={allExtensions}
-        currentExtension={currentExtension}
-        handleSelectExtension={handleSelectExtension}
-      />
+      <Filters filters={filters} filter={filter} handleFilter={handleFilter} />
       <div>
-        <CardsList cards={flatCards} currentExtension={currentExtension} />
+        <CardsList
+          cards={flatCards}
+          currentExpansion={filter.expansion}
+          getFilteredCards={getFilteredCards}
+        />
       </div>
     </motion.div>
   );
