@@ -1,12 +1,14 @@
 // Components
 import { Home, GlobalStyles } from './components';
+import { Container } from './components/styled';
 
 function App() {
   return (
     <div className="App">
       <GlobalStyles />
-      <h1>Hearthstone</h1>
-      <Home />
+      <Container>
+        <Home />
+      </Container>
     </div>
   );
 }

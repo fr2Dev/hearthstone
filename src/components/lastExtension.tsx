@@ -5,7 +5,7 @@ import { DefaultState, Card } from '../types';
 // Hooks
 import { useMoreContent } from '../logic/hooks';
 // Components
-import { CardList } from './styled';
+import { CardList, Button, ButtonWrapper } from './styled';
 import { fadein } from './styled/animations';
 
 export interface LastExtensionProps {}
@@ -13,8 +13,6 @@ export interface LastExtensionProps {}
 const getLastExtensionName = (extansions: {}): string => {
   return Object.keys(extansions)[Object.keys(extansions).length - 1];
 };
-
-const cardsPerPage = 10;
 
 const LastExtension: React.FC<LastExtensionProps> = () => {
   const { cards, base } = useSelector((state: DefaultState) => state.infos);
@@ -47,10 +45,10 @@ const LastExtension: React.FC<LastExtensionProps> = () => {
               })}
             </CardList>
             {isMore && (
-              <div>
-                <button onClick={handleShowMoreContent}>Load more</button>
-                <button onClick={handleShowAll}>Show All</button>
-              </div>
+              <ButtonWrapper>
+                <Button onClick={handleShowMoreContent}>Load more</Button>
+                <Button onClick={handleShowAll}>Show All</Button>
+              </ButtonWrapper>
             )}
           </>
         )}

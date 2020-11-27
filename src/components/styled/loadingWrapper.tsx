@@ -37,7 +37,11 @@ export const SvgWrapper = styled.div`
         box-shadow: none;
       }
       50% {
-        box-shadow: #b3ecff 0 0 clamp(2rem, 100px, 20rem) 10px;
+        box-shadow: #b3ecff 0 0 2.5rem 0.25rem;
+
+        @media only screen and (min-width: 768px) {
+          box-shadow: #b3ecff 0 0 5rem 0.5rem;
+        }
       }
       100% {
         box-shadow: none;

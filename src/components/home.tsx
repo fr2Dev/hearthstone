@@ -6,6 +6,9 @@ import { loadInfos } from '../logic/actions';
 import { DefaultState } from '../types';
 // Components
 import { LastExtension, Loader } from './';
+import { LogoWrapper } from './styled';
+import logoName from '../assets/images/logo-name.png';
+
 export interface HomeProps {}
 
 const Home: React.FC<HomeProps> = () => {
@@ -19,8 +22,11 @@ const Home: React.FC<HomeProps> = () => {
   }, [dispatch]);
   return (
     <div>
+      <LogoWrapper>
+        <img src={logoName} alt="hearthstone logo" />
+      </LogoWrapper>
       <AnimatePresence onExitComplete={() => setshowLoadedContent(true)}>
-        {true && <Loader />}
+        {isLoading && <Loader />}
       </AnimatePresence>
       {!isLoading && showLoadedContent && <LastExtension />}
     </div>
