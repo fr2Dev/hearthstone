@@ -5,7 +5,7 @@ import { Card } from '../types';
 // Hooks
 import { useMoreContent } from '../logic/hooks';
 // Components
-import { CardList, Button, ButtonWrapper } from './styled';
+import { CardList, NotFound, Button, ButtonWrapper } from './styled';
 import { slideup } from './styled/animations';
 
 export interface CardsListProps {
@@ -34,7 +34,7 @@ const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards }) => {
   return (
     <>
       <CardList>
-        {contentToShow.length > 0 &&
+        {contentToShow.length > 0 ? (
           contentToShow.map((card) => {
             const { cardId, name, img, imgGold } = card;
 
@@ -45,7 +45,10 @@ const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards }) => {
                 </motion.div>
               </li>
             );
-          })}
+          })
+        ) : (
+          <NotFound>Oops... no result</NotFound>
+        )}
       </CardList>
       {isMore && (
         <ButtonWrapper>

@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         background-color: #1D2635;
         color: #fdfdfd;
+        font-family: Arial, sans-serif;
     }
     ul {
       list-style-type: none;
