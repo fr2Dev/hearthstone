@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 // Types
 import { Card } from '../types';
 // Hooks
 import { useMoreContent } from '../logic/hooks';
 // Components
 import { CardList, Button, ButtonWrapper } from './styled';
+import { slideup } from './styled/animations';
 
 export interface CardsListProps {
   cards: Card[];
@@ -49,7 +51,13 @@ const CardsList: React.FC<CardsListProps> = ({ cards, currentExtension }) => {
           contentToShow.map((card) => {
             const { cardId, name, img, imgGold } = card;
 
-            return <li key={cardId}>{img && <img src={imgGold ? imgGold : img} alt={name} />}</li>;
+            return (
+              <li>
+                <motion.div variants={slideup} initial="hidden" animate="show" key={cardId}>
+                  {img && <img src={imgGold ? imgGold : img} alt={name} />}
+                </motion.div>
+              </li>
+            );
           })}
       </CardList>
       {isMore && (
