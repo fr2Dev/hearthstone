@@ -10,11 +10,11 @@ import { slideup } from './styled/animations';
 
 export interface CardsListProps {
   cards: Card[];
-  currentExpansion: string;
   getFilteredCards: () => Card[];
+  search: string;
 }
 
-const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards }) => {
+const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards, search }) => {
   const [expansion, setExpansion] = useState(cards);
   const {
     contentToShow,
@@ -31,7 +31,7 @@ const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards }) => {
     resetContent(newExpansion as []);
   }, [getFilteredCards]);
 
-  return (
+  const StandardDisplay = () => (
     <>
       <CardList>
         {contentToShow.length > 0 ? (
@@ -58,6 +58,40 @@ const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards }) => {
       )}
     </>
   );
+
+  const SearchDisplay = () => {
+    const searchList = expansion.filter((card: Card) =>
+      card.name.toLowerCase().includes(search.toLowerCase())
+    );
+    return (
+      <>
+        {searchList.length > 0 && <p>{getNumberResults(searchList.length)}</p>}
+        <CardList>
+          {searchList.length > 0 ? (
+            <>
+              {searchList.map((card) => {
+                const { cardId, name, img, imgGold } = card;
+
+                return (
+                  <li key={cardId}>
+                    <motion.div variants={slideup} initial="hidden" animate="show">
+                      {img && <img src={imgGold ? imgGold : img} alt={name} />}
+                    </motion.div>
+                  </li>
+                );
+              })}
+            </>
+          ) : (
+            <NotFound>Oops... no result</NotFound>
+          )}
+        </CardList>
+      </>
+    );
+  };
+
+  return <>{search.length > 0 ? <SearchDisplay /> : <StandardDisplay />}</>;
 };
+
+const getNumberResults = (results: number) => `${results} result${results > 1 ? 's' : ''}`;
 
 export default CardsList;

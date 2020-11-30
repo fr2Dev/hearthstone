@@ -16,22 +16,35 @@ const Filters: React.FC<FiltersProps> = ({ filters, filter, handleFilter, resetS
   const noReset = classe === all && type === all;
   return (
     <InputsWrapper>
-      <Select value={expansion} onChange={(e) => handleFilter(e)('expansion')}>
-        {expansions.map((ext) => (
-          <option key={ext}>{ext}</option>
-        ))}
-      </Select>
-      <Select value={classe} onChange={(e) => handleFilter(e)('classe')}>
-        {classes.map((cla) => (
-          <option key={cla}>{cla}</option>
-        ))}
-      </Select>
-      <Select value={type} onChange={(e) => handleFilter(e)('type')}>
-        {types.map((typ) => (
-          <option key={typ}>{typ}</option>
-        ))}
-      </Select>
-      <Button disabled={noReset} onClick={resetSubFilters}>
+      <div>
+        <p>Expansions</p>
+        <Select value={expansion} onChange={(e) => handleFilter(e)('expansion')}>
+          {expansions.map((ext) => (
+            <option key={ext}>{ext}</option>
+          ))}
+        </Select>
+      </div>
+      <div>
+        <p>Classes</p>
+        <Select value={classe} onChange={(e) => handleFilter(e)('classe')}>
+          {classes.map((cla) => (
+            <option key={cla}>{cla}</option>
+          ))}
+        </Select>
+      </div>
+      <div>
+        <p>Types</p>
+        <Select value={type} onChange={(e) => handleFilter(e)('type')}>
+          {types.map((typ) => (
+            <option key={typ}>{typ}</option>
+          ))}
+        </Select>
+      </div>
+      <Button
+        style={{ alignSelf: 'flex-end', marginTop: '.5rem', marginBottom: '.5rem' }}
+        disabled={noReset}
+        onClick={resetSubFilters}
+      >
         Reset
       </Button>
     </InputsWrapper>

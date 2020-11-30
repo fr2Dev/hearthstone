@@ -1,3 +1,4 @@
+import { Route } from 'react-router-dom';
 // Components
 import { Home, GlobalStyles } from './components';
 import { Container } from './components/styled';
@@ -7,7 +8,9 @@ function App() {
     <div className="App">
       <GlobalStyles />
       <Container>
-        <Home />
+        <Route path="/">
+          <Home />
+        </Route>
       </Container>
     </div>
   );

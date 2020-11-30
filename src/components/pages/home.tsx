@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
-import { loadInfos } from '../logic/actions';
+import { loadInfos } from '../../logic/actions';
 // Types
-import { DefaultState } from '../types';
+import { DefaultState } from '../../types';
 // Components
-import { LastExtension, Loader } from './';
-import { LogoWrapper } from './styled';
-import logoName from '../assets/images/logo-name.png';
+import { LastExtension, Loader } from '..';
+import { LogoWrapper } from '../styled';
+import logoName from '../../assets/images/logo-name.png';
 
 export interface HomeProps {}
 

@@ -67,6 +67,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Select = styled.select`
+  margin: 0.5rem 0;
   font-size: 13px;
   font-weight: 700;
   height: 42px;
@@ -77,6 +78,14 @@ export const Select = styled.select`
   option {
     font-family: Arial, sans-serif;
   }
+`;
+
+export const Input = styled.input`
+  font-size: 13px;
+  font-weight: 700;
+  height: 42px;
+  border: 1px solid transparent;
+  padding: 0 24px;
 `;
 
 export const InputsWrapper = styled.div`
