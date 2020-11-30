@@ -18,6 +18,7 @@ const useMoreContent = (content: [], contentPerGroup: number = 10) => {
   const resetContent = (initContent: []) => {
     const slicedPosts = [...initContent].slice(0, contentPerGroup);
     setContentsToShow([...slicedPosts]);
+    setNext(contentPerGroup);
   };
 
   const handleShowMoreContent = () => {
