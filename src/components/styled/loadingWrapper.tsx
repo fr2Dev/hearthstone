@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export const LoadingWrapper = styled(motion.div)`
   --transition: 3s linear infinite;
   display: grid;
-  min-height: 80vh;
+  min-height: 60vh;
   place-items: center;
   width: 100%;
 `;
