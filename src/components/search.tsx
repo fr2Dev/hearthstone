@@ -1,12 +1,22 @@
-//Components
+import { useDispatch } from 'react-redux';
+// Redux
+import { searchCard } from '../logic/actions';
+// Components
 import { Input, InputsWrapper } from './styled';
 
-export interface SearchProps {
-  inputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-}
+export interface SearchProps {}
 
-const Search: React.FC<SearchProps> = ({ inputHandler, handleSubmit }) => {
+const Search: React.FC<SearchProps> = () => {
+  const dispatch = useDispatch();
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(searchCard(e.target.value));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <p style={{ marginBottom: '.5rem' }}>Search</p>

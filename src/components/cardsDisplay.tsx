@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 // Types
 import { DefaultState } from '../types';
 // Hooks
-import { useFilters, useSearch } from '../logic/hooks';
+import { useFilters } from '../logic/hooks';
 // Components
 import { CardsList, Filters, Search } from '.';
 import { fadein } from './styled/animations';
@@ -11,7 +11,10 @@ import { fadein } from './styled/animations';
 export interface CardsDisplayProps {}
 
 const CardsDisplay: React.FC<CardsDisplayProps> = () => {
-  const { cards, base } = useSelector((state: DefaultState) => state.infos);
+  const { infos, search } = useSelector((state: DefaultState) => state);
+  const { cards, base } = infos;
+  const { value } = search;
+
   const {
     filters,
     filter,
@@ -20,7 +23,6 @@ const CardsDisplay: React.FC<CardsDisplayProps> = () => {
     resetSubFilters,
     flatCards,
   } = useFilters(cards, base);
-  const { search, inputHandler, handleSubmit } = useSearch();
 
   return (
     <motion.div variants={fadein} initial="hidden" animate="show">
@@ -30,9 +32,9 @@ const CardsDisplay: React.FC<CardsDisplayProps> = () => {
         handleFilter={handleFilter}
         resetSubFilters={resetSubFilters}
       />
-      <Search inputHandler={inputHandler} handleSubmit={handleSubmit} />
+      <Search />
       <div>
-        <CardsList cards={flatCards} getFilteredCards={getFilteredCards} search={search} />
+        <CardsList cards={flatCards} getFilteredCards={getFilteredCards} search={value} />
       </div>
     </motion.div>
   );

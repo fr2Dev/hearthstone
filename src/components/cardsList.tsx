@@ -74,9 +74,7 @@ const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards, search }
 
                 return (
                   <li key={cardId}>
-                    <motion.div variants={slideup} initial="hidden" animate="show">
-                      {img && <img src={imgGold ? imgGold : img} alt={name} />}
-                    </motion.div>
+                    <div>{img && <img src={imgGold ? imgGold : img} alt={name} />}</div>
                   </li>
                 );
               })}

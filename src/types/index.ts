@@ -27,11 +27,15 @@ export interface FetchOptions {
 
 export interface DefaultState {
   infos: InfosState;
+  search: SearchState;
 }
 export interface InfosState {
   base: InfosBase;
   cards: CardObject;
   isLoading: boolean;
+}
+export interface SearchState {
+  value: string;
 }
 
 export interface InfosBase {
@@ -67,5 +71,5 @@ export interface CardObject {
 
 export const all = 'All';
 
-export { FETCH_INFOS, LOADING, FETCH_CARDS } from './actions';
-export type { Loading, FetchAction } from './actions';
+export { FETCH_INFOS, LOADING, FETCH_CARDS, SEARCH_CARD } from './actions';
+export type { Loading, FetchAction, SearchCardAction } from './actions';
