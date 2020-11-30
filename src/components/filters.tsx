@@ -1,7 +1,7 @@
 // Types
 import { all } from '../types';
 //Components
-import { Button, Select } from './styled';
+import { Button, Select, InputsWrapper } from './styled';
 
 export interface FiltersProps {
   filters: { expansions: string[]; classes: string[]; types: string[] };
@@ -15,7 +15,7 @@ const Filters: React.FC<FiltersProps> = ({ filters, filter, handleFilter, resetS
   const { expansion, classe, type } = filter;
   const noReset = classe === all && type === all;
   return (
-    <div>
+    <InputsWrapper>
       <Select value={expansion} onChange={(e) => handleFilter(e)('expansion')}>
         {expansions.map((ext) => (
           <option key={ext}>{ext}</option>
@@ -34,7 +34,7 @@ const Filters: React.FC<FiltersProps> = ({ filters, filter, handleFilter, resetS
       <Button disabled={noReset} onClick={resetSubFilters}>
         Reset
       </Button>
-    </div>
+    </InputsWrapper>
   );
 };
 

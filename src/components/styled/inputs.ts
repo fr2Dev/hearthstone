@@ -78,3 +78,29 @@ export const Select = styled.select`
     font-family: Arial, sans-serif;
   }
 `;
+
+export const InputsWrapper = styled.div`
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  margin-bottom: 1rem;
+
+  * {
+    width: 100%;
+  }
+  button {
+    text-align: center;
+  }
+
+  @media only screen and (min-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    * {
+      width: auto;
+    }
+    button {
+      text-align: left;
+    }
+  }
+`;

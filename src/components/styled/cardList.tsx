@@ -3,11 +3,23 @@ import styled from 'styled-components';
 export const CardList = styled.ul`
   min-height: 80vh;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(var(--min, 120px), 1fr));
   grid-column-gap: 2rem;
 
   img {
     width: 100%;
+  }
+
+  @media only screen and (min-width: 576px) {
+    --min: 160px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    --min: 200px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    --min: 280px;
   }
 `;
 
