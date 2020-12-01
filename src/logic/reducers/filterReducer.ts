@@ -9,7 +9,10 @@ import {
 } from '../../types';
 
 const initState: FilterState = {
-  cards: [],
+  cards: {
+    original: [],
+    list: [],
+  },
   all: {
     expansions: [],
     classes: [],
@@ -26,12 +29,15 @@ const filterReducer = (state = initState, action: FilterActions) => {
   switch (action.type) {
     case INIT_FILTERS:
       const { all, currents, cards } = action.payload;
-
+      const { original, list } = cards;
       return {
         ...state,
         all,
         currents,
-        cards,
+        cards: {
+          original,
+          list,
+        },
       };
 
     case UPDATE_FILTERS:

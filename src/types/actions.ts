@@ -35,7 +35,10 @@ export interface InitFiltersAction {
   payload: {
     all: AllFilters;
     currents: CurrentFilters;
-    cards: Card[];
+    cards: {
+      original: Card[];
+      list: Card[];
+    };
   };
 }
 

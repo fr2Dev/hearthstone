@@ -13,30 +13,19 @@ export interface CardsDisplayProps {}
 
 const CardsDisplay: React.FC<CardsDisplayProps> = () => {
   const dispatch = useDispatch();
-  const { infos, search } = useSelector((state: DefaultState) => state);
-  const { cards, base } = infos;
-  const { value } = search;
+  const { cards, base } = useSelector((state: DefaultState) => state.infos);
 
   useEffect(() => {
     dispatch(initFilters(cards, base));
   }, [dispatch]);
 
-  // const {
-  //   filters,
-  //   filter,
-  //   handleFilter,
-  //   getFilteredCards,
-  //   resetSubFilters,
-  //   flatCards,
-  // } = useFilters(cards, base);
-
   return (
     <motion.div variants={fadein} initial="hidden" animate="show">
       <Filters />
       <Search />
-      {/* <div>
-        <CardsList cards={flatCards} getFilteredCards={getFilteredCards} search={value} />
-      </div> */}
+      <div>
+        <CardsList />
+      </div>
     </motion.div>
   );
 };

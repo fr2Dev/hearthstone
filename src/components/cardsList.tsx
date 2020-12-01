@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
 // Types
-import { Card } from '../types';
+import { DefaultState, Card } from '../types';
 // Hooks
 import { useMoreContent } from '../logic/hooks';
+import { getFilteredCards } from '../logic/hooks/useFilters';
 // Components
 import { CardList, NotFound, Button, ButtonWrapper } from './styled';
 import { slideup } from './styled/animations';
 
-export interface CardsListProps {
-  cards: Card[];
-  getFilteredCards: () => Card[];
-  search: string;
-}
+export interface CardsListProps {}
 
-const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards, search }) => {
-  const [expansion, setExpansion] = useState(cards);
+const CardsList: React.FC<CardsListProps> = () => {
+  const { search, filters } = useSelector((state: DefaultState) => state);
+  const { original, list } = filters.cards;
+  const { currents } = filters;
+
+  const [expansion, setExpansion] = useState(list);
   const {
     contentToShow,
     resetContent,
@@ -26,10 +29,10 @@ const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards, search }
 
   //useEffect
   useEffect(() => {
-    const newExpansion = getFilteredCards();
+    const newExpansion = getFilteredCards(original, currents);
     setExpansion(newExpansion);
     resetContent(newExpansion as []);
-  }, [getFilteredCards]);
+  }, [currents]);
 
   const StandardDisplay = () => (
     <>
@@ -61,7 +64,7 @@ const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards, search }
 
   const SearchDisplay = () => {
     const searchList = expansion.filter((card: Card) =>
-      card.name.toLowerCase().includes(search.toLowerCase())
+      card.name.toLowerCase().includes(search.value.toLowerCase())
     );
     return (
       <>
@@ -87,7 +90,7 @@ const CardsList: React.FC<CardsListProps> = ({ cards, getFilteredCards, search }
     );
   };
 
-  return <>{search.length > 0 ? <SearchDisplay /> : <StandardDisplay />}</>;
+  return <>{search.value.length > 0 ? <SearchDisplay /> : <StandardDisplay />}</>;
 };
 
 const getNumberResults = (results: number) => `${results} result${results > 1 ? 's' : ''}`;

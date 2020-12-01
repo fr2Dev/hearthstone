@@ -38,14 +38,22 @@ export interface InfosState {
 export interface SearchState {
   value: string;
 }
+export interface CurrentFilters {
+  expansion: string;
+  classe: string;
+  type: string;
+}
 export interface FilterState {
-  cards: Card[];
+  cards: {
+    original: Card[];
+    list: Card[];
+  };
   all: {
     expansions: string[];
     classes: string[];
     types: string[];
   };
-  currents: { expansion: string; classe: string; type: string };
+  currents: CurrentFilters;
 }
 export interface InfosBase {
   classes: string[];
@@ -82,12 +90,6 @@ export interface AllFilters {
   expansions: string[];
   classes: string[];
   types: string[];
-}
-
-export interface CurrentFilters {
-  expansion: string[];
-  classe: string[];
-  type: string[];
 }
 
 export const All = 'All';

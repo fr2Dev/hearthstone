@@ -5,7 +5,7 @@ import { loadInfos } from '../../logic/actions';
 // Types
 import { DefaultState } from '../../types';
 // Components
-import { LastExtension, Loader } from '..';
+import { CardsDisplay, Loader } from '..';
 import { LogoWrapper } from '../styled';
 import logoName from '../../assets/images/logo-name.png';
 
@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = () => {
       <AnimatePresence onExitComplete={() => setshowLoadedContent(true)}>
         {isLoading && <Loader />}
       </AnimatePresence>
-      {!isLoading && showLoadedContent && <LastExtension />}
+      {!isLoading && showLoadedContent && <CardsDisplay />}
     </div>
   );
 };

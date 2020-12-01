@@ -1,9 +1,9 @@
 // Types
-import { CardObject, InfosBase, Card, All } from '../../types';
+import { CardObject, InfosBase, Card, All, CurrentFilters } from '../../types';
 
 const useFilters = (cards: CardObject, base: InfosBase) => {
   const { allCards, allExtensions } = getLists(cards);
-  const flatCards = allCards.flat() as Card[];
+  const cardsListOriginal = allCards.flat() as Card[];
   const { classes: classesDefault, types: typesDefault } = base;
   // Remove duplicate & unused classes
   const { classes, types } = getIntendedFilters(classesDefault, typesDefault);
@@ -19,29 +19,9 @@ const useFilters = (cards: CardObject, base: InfosBase) => {
     type: All,
   };
 
-  const getFilteredCards = () => {
-    const getFilterBase = (card: Card) =>
-      (card.type === 'Spell' || card.type === 'Minion' || card.type === 'Weapon') &&
-      card.text &&
-      !card.text.includes('FX') &&
-      card.img;
-    const getFilterExpansion = (card: Card) =>
-      currentFilters.expansion === All ? true : card.cardSet === currentFilters.expansion;
-    const getFilterClasse = (card: Card) =>
-      currentFilters.classe === All ? true : card.playerClass === currentFilters.classe;
-    const getFilterType = (card: Card) =>
-      currentFilters.type === All ? true : card.type === currentFilters.type;
+  const cardsList = getFilteredCards(cardsListOriginal, currentFilters);
 
-    const filtered = flatCards
-      .filter((card) => getFilterBase(card))
-      .filter((card) => getFilterExpansion(card))
-      .filter((card) => getFilterClasse(card))
-      .filter((card) => getFilterType(card)) as Card[];
-
-    return filtered;
-  };
-
-  return { allFilters, currentFilters, getFilteredCards };
+  return { allFilters, currentFilters, cardsListOriginal, cardsList };
 };
 
 export const getLists = (cards: CardObject) => {
@@ -91,6 +71,28 @@ export const getIntendedFilters = (classesDefault: string[], typesDefault: strin
   const types = typesDefault.sort();
 
   return { classes, types };
+};
+
+export const getFilteredCards = (cards: Card[], currentFilters: CurrentFilters) => {
+  const getFilterBase = (card: Card) =>
+    (card.type === 'Spell' || card.type === 'Minion' || card.type === 'Weapon') &&
+    card.text &&
+    !card.text.includes('FX') &&
+    card.img;
+  const getFilterExpansion = (card: Card) =>
+    currentFilters.expansion === All ? true : card.cardSet === currentFilters.expansion;
+  const getFilterClasse = (card: Card) =>
+    currentFilters.classe === All ? true : card.playerClass === currentFilters.classe;
+  const getFilterType = (card: Card) =>
+    currentFilters.type === All ? true : card.type === currentFilters.type;
+
+  const filtered = cards
+    .filter((card) => getFilterBase(card))
+    .filter((card) => getFilterExpansion(card))
+    .filter((card) => getFilterClasse(card))
+    .filter((card) => getFilterType(card)) as Card[];
+
+  return filtered;
 };
 
 export default useFilters;

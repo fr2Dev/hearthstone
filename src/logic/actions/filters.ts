@@ -12,14 +12,12 @@ import {
 import { useFilters } from '../hooks';
 
 export const initFilters = (cards: CardObject, base: InfosBase) => (dispatch: Dispatch) => {
-  const { allFilters, currentFilters, getFilteredCards } = useFilters(cards, base);
-
-  const filteredCards = getFilteredCards();
+  const { allFilters, currentFilters, cardsListOriginal, cardsList } = useFilters(cards, base);
 
   dispatch({
     type: INIT_FILTERS,
     payload: {
-      cards: filteredCards,
+      cards: { original: cardsListOriginal, list: cardsList },
       all: allFilters,
       currents: currentFilters,
     },
