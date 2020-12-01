@@ -1,3 +1,4 @@
+// Libraries
 import { compose } from 'redux';
 
 export interface IWindow {
@@ -25,36 +26,12 @@ export interface FetchOptions {
   };
 }
 
-export interface DefaultState {
-  infos: InfosState;
-  search: SearchState;
-  filters: FilterState;
-}
-export interface InfosState {
-  base: InfosBase;
-  cards: CardObject;
-  isLoading: boolean;
-}
-export interface SearchState {
-  value: string;
-}
 export interface CurrentFilters {
   expansion: string;
   classe: string;
   type: string;
 }
-export interface FilterState {
-  cards: {
-    original: Card[];
-    list: Card[];
-  };
-  all: {
-    expansions: string[];
-    classes: string[];
-    types: string[];
-  };
-  currents: CurrentFilters;
-}
+
 export interface InfosBase {
   classes: string[];
   sets: string[];
@@ -95,8 +72,8 @@ export interface AllFilters {
 export const All = 'All';
 
 export {
-  FETCH_INFOS,
   LOADING,
+  FETCH_INFOS,
   FETCH_CARDS,
   SEARCH_CARD,
   INIT_FILTERS,
@@ -104,3 +81,4 @@ export {
   RESET_FILTERS,
 } from './actions';
 export type { Loading, FetchActions, SearchCardAction, FilterActions } from './actions';
+export type { DefaultState, InfosState, SearchState, FilterState } from './state';

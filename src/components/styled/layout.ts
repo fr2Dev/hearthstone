@@ -1,4 +1,6 @@
+// Libraries
 import styled, { css } from 'styled-components';
+
 const screenSizes = [
   { breakpoint: '576px', value: '540px' },
   { breakpoint: '768px', value: '720px' },
@@ -9,7 +11,6 @@ const screenSizes = [
 ];
 
 export const Container = styled.div`
-
   margin: auto;
   max-width: 100%;
   padding: 0 var(--base, 1rem);

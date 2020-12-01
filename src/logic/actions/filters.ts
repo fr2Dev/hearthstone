@@ -1,3 +1,4 @@
+// Libraries
 import { Dispatch } from 'redux';
 // Types
 import {
@@ -8,7 +9,7 @@ import {
   InfosBase,
   All,
 } from '../../types';
-// Hooks
+// Logic
 import { useFilters } from '../hooks';
 
 export const initFilters = (cards: CardObject, base: InfosBase) => (dispatch: Dispatch) => {

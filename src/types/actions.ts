@@ -1,4 +1,6 @@
+// Types
 import { InfosBase, Card, AllFilters, CurrentFilters } from './';
+
 export const FETCH_INFOS = 'FETCH_INFOS';
 export const FETCH_CARDS = 'FETCH_CARDS';
 export const SEARCH_CARD = 'SEARCH_CARD';
@@ -24,11 +26,6 @@ export interface SearchCardAction {
   type: typeof SEARCH_CARD;
   payload: {};
 }
-
-// export interface FilterCardsdAction {
-//   type: typeof UPDATE_FILTERS;
-//   payload: {};
-// }
 
 export interface InitFiltersAction {
   type: typeof INIT_FILTERS;

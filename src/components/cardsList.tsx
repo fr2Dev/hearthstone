@@ -1,10 +1,10 @@
+// Libraries
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-// Redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // Types
 import { DefaultState, Card } from '../types';
-// Hooks
+// Logic
 import { useMoreContent } from '../logic/hooks';
 import { getFilteredCards } from '../logic/hooks/useFilters';
 // Components
@@ -18,20 +18,20 @@ const CardsList: React.FC<CardsListProps> = () => {
   const { original, list } = filters.cards;
   const { currents } = filters;
 
-  const [expansion, setExpansion] = useState(list);
+  const [cards, setCards] = useState(list);
   const {
     contentToShow,
     resetContent,
     handleShowMoreContent,
     handleShowAll,
     isMore,
-  } = useMoreContent(expansion as []);
+  } = useMoreContent(cards as []);
 
   //useEffect
   useEffect(() => {
-    const newExpansion = getFilteredCards(original, currents);
-    setExpansion(newExpansion);
-    resetContent(newExpansion as []);
+    const newCards = getFilteredCards(original, currents);
+    setCards(newCards);
+    resetContent(newCards as []);
   }, [currents]);
 
   const StandardDisplay = () => (
@@ -63,7 +63,7 @@ const CardsList: React.FC<CardsListProps> = () => {
   );
 
   const SearchDisplay = () => {
-    const searchList = expansion.filter((card: Card) =>
+    const searchList = cards.filter((card: Card) =>
       card.name.toLowerCase().includes(search.value.toLowerCase())
     );
     return (

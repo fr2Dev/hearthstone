@@ -1,7 +1,7 @@
 // Components
 import { LoadingWrapper, SvgWrapper } from './styled';
-import { fadein } from './styled/animations';
 import { Logo } from '.';
+import { fadein } from './styled/animations';
 
 export interface LoaderProps {}
 

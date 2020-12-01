@@ -1,3 +1,4 @@
+// Libraries
 import { useState, useEffect } from 'react';
 
 const useMoreContent = (content: [], contentPerGroup: number = 10) => {

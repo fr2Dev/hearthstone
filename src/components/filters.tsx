@@ -1,4 +1,4 @@
-// Redux
+// Libraries
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilters, resetFilters } from '../logic/actions';
 // Types

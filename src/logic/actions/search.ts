@@ -1,3 +1,4 @@
+// Libraries
 import { Dispatch } from 'redux';
 // Types
 import { SEARCH_CARD } from '../../types';

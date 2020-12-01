@@ -1,5 +1,6 @@
+// Libraries
 import { useDispatch } from 'react-redux';
-// Redux
+// Logic
 import { searchCard } from '../logic/actions';
 // Components
 import { Input, InputsWrapper } from './styled';
