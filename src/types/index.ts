@@ -28,6 +28,7 @@ export interface FetchOptions {
 export interface DefaultState {
   infos: InfosState;
   search: SearchState;
+  filters: FilterState;
 }
 export interface InfosState {
   base: InfosBase;
@@ -37,7 +38,15 @@ export interface InfosState {
 export interface SearchState {
   value: string;
 }
-
+export interface FilterState {
+  cards: Card[];
+  all: {
+    expansions: string[];
+    classes: string[];
+    types: string[];
+  };
+  currents: { expansion: string; classe: string; type: string };
+}
 export interface InfosBase {
   classes: string[];
   sets: string[];
@@ -69,7 +78,27 @@ export interface CardObject {
   [key: string]: [];
 }
 
-export const all = 'All';
+export interface AllFilters {
+  expansions: string[];
+  classes: string[];
+  types: string[];
+}
 
-export { FETCH_INFOS, LOADING, FETCH_CARDS, SEARCH_CARD } from './actions';
-export type { Loading, FetchAction, SearchCardAction } from './actions';
+export interface CurrentFilters {
+  expansion: string[];
+  classe: string[];
+  type: string[];
+}
+
+export const All = 'All';
+
+export {
+  FETCH_INFOS,
+  LOADING,
+  FETCH_CARDS,
+  SEARCH_CARD,
+  INIT_FILTERS,
+  UPDATE_FILTERS,
+  RESET_FILTERS,
+} from './actions';
+export type { Loading, FetchActions, SearchCardAction, FilterActions } from './actions';

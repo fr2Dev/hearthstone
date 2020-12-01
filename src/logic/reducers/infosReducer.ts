@@ -1,5 +1,5 @@
 // Types
-import { FETCH_INFOS, FETCH_CARDS, LOADING, FetchAction, InfosState } from '../../types';
+import { FETCH_INFOS, FETCH_CARDS, LOADING, FetchActions, InfosState } from '../../types';
 
 const initState: InfosState = {
   base: {
@@ -17,7 +17,7 @@ const initState: InfosState = {
   isLoading: true,
 };
 
-const infosReducer = (state = initState, action: FetchAction) => {
+const infosReducer = (state = initState, action: FetchActions) => {
   switch (action.type) {
     case FETCH_INFOS:
       const { base, cards } = action.payload;

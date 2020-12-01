@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Types
-import { CardObject, InfosBase, Card, all } from '../../types';
+import { CardObject, InfosBase, Card, All } from '../../types';
 
 const useFilters = (cards: CardObject, base: InfosBase) => {
   const { allCards, allExtensions } = getLists(cards);
@@ -8,19 +7,16 @@ const useFilters = (cards: CardObject, base: InfosBase) => {
   const { classes: classesDefault, types: typesDefault } = base;
   // Remove duplicate & unused classes
   const { classes, types } = getIntendedFilters(classesDefault, typesDefault);
-  const filters = {
-    expansions: [all, ...allExtensions],
-    classes: [all, ...classes],
-    types: [all, ...types],
+  const allFilters = {
+    expansions: [All, ...allExtensions],
+    classes: [All, ...classes],
+    types: [All, ...types],
   };
-  const [filter, setFilter] = useState({
-    expansion: allExtensions[allExtensions.length - 1],
-    classe: all,
-    type: all,
-  });
 
-  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => (prop: string) => {
-    setFilter({ ...filter, [prop]: e.target.value });
+  const currentFilters = {
+    expansion: allExtensions[allExtensions.length - 1],
+    classe: All,
+    type: All,
   };
 
   const getFilteredCards = () => {
@@ -30,10 +26,11 @@ const useFilters = (cards: CardObject, base: InfosBase) => {
       !card.text.includes('FX') &&
       card.img;
     const getFilterExpansion = (card: Card) =>
-      filter.expansion === all ? true : card.cardSet === filter.expansion;
+      currentFilters.expansion === All ? true : card.cardSet === currentFilters.expansion;
     const getFilterClasse = (card: Card) =>
-      filter.classe === all ? true : card.playerClass === filter.classe;
-    const getFilterType = (card: Card) => (filter.type === all ? true : card.type === filter.type);
+      currentFilters.classe === All ? true : card.playerClass === currentFilters.classe;
+    const getFilterType = (card: Card) =>
+      currentFilters.type === All ? true : card.type === currentFilters.type;
 
     const filtered = flatCards
       .filter((card) => getFilterBase(card))
@@ -44,14 +41,10 @@ const useFilters = (cards: CardObject, base: InfosBase) => {
     return filtered;
   };
 
-  const resetSubFilters = () => {
-    setFilter({ ...filter, classe: all, type: all });
-  };
-
-  return { filters, filter, handleFilter, getFilteredCards, resetSubFilters, flatCards };
+  return { allFilters, currentFilters, getFilteredCards };
 };
 
-const getLists = (cards: CardObject) => {
+export const getLists = (cards: CardObject) => {
   const blacklist = [
     'Missions',
     'Demo',
@@ -77,7 +70,7 @@ const getLists = (cards: CardObject) => {
   return { allCards, allExtensions };
 };
 
-const getIntendedFilters = (classesDefault: string[], typesDefault: string[]) => {
+export const getIntendedFilters = (classesDefault: string[], typesDefault: string[]) => {
   // Get ride of unwanted
   for (let i = classesDefault.length - 1; i >= 0; i--) {
     if (classesDefault[i] === 'Dream' || classesDefault[i] === 'Death Knight') {

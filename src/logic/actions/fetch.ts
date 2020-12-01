@@ -17,12 +17,3 @@ export const loadInfos = () => async (dispatch: Dispatch) => {
     payload: { base: infos.data, cards: cards.data },
   });
 };
-
-export const loadCards = () => async (dispatch: Dispatch) => {
-  const response: AxiosResponse<DataApi> = await axios.get(optionsCards.url, optionsCards);
-
-  dispatch({
-    type: FETCH_CARDS,
-    payload: response.data,
-  });
-};
